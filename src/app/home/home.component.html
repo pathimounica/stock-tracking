@@ -19,13 +19,13 @@
   <div *ngIf="stocksLoading" class="d-flex justify-content-center align-items-center">
     Loading....
   </div>
-  <div class="stocks-container text-center d-flex justify-content-center">
+  <div class="stocks-container text-center d-flex justify-content-center" *ngIf="stockList.length">
     <div class="w-90 d-flex flex-wrap justify-content-center">
       <div class="shadow p-3 m-3 bg-body-tertiary rounded text-center border border-dark-subtle stock-div" *ngFor="let stock of stockList.reverse()">
           <div class="d-flex px-2 stock-header text-uppercase font-weight-bold">
             <p class="stock-label p-1 me-2">{{stock.symbol}}</p>
             <div>
-              {{stock.description}}
+              {{stock?.description}}
             </div>
           </div>
           <button (click)="removeStock(stock.symbol)" id="remove{{stock.symbol}}" class="position-absolute remove-stock btn"><i class="fa fa-times-circle fa-2x"></i></button>
