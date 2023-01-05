@@ -1,5 +1,8 @@
 <div class="summary-container">
-    <div class="d-flex justify-content-center mt-5" *ngIf="stockDetails$|async as sentiment">
+    <ng-template #loading>
+        <div class="d-flex justify-content-center">Loading ...</div>
+    </ng-template>
+    <div class="d-flex justify-content-center mt-5" *ngIf="stockDetails$|async as sentiment; else loading">
         <div class="shadow p-3 mb-5 bg-body-tertiary rounded text-center w-75 border border-dark-subtle" *ngIf="sentiment?.symbol">
             <div class="d-flex px-2 stock-header text-uppercase font-weight-bold">
                 <p class="stock-label p-1 me-2">{{sentiment.symbol}}<p>
