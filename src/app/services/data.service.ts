@@ -28,7 +28,7 @@ export class DataService {
 
   getSentiment(symbol: string, from: string, to:string){
     return this.http.get<SentimentInfo>(
-      `${this.configUrl}stock//insider-sentiment?symbol=${symbol}&from=2015-01-01&to=2022-03-01${this.token}`
+      `${this.configUrl}stock//insider-sentiment?symbol=${symbol}&from=2022-05-05&to=2022-12-31${this.token}`
     );
   }
   
