@@ -1,0 +1,23 @@
+.home-container{
+    input{
+        border-radius: 20px;
+    }
+}
+.stock-div{
+    position: relative;
+    .stock-label{
+        background-color: red;
+        color: #fff;
+        border-radius: 5px;
+        font-size: 12px;
+    }
+    .remove-stock{
+        top:-20px;
+        right:-20px;
+        outline: none;
+    }
+    label{
+        font-weight: 600;
+    }
+}
+
