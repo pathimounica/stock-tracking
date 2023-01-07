@@ -11,7 +11,7 @@
                 </div>
               </div>
               <div class="row" *ngIf="sentiment.data?.length">
-                <div class="col" [ngClass]="{'border-end border-3': i!=2}" *ngFor="let monthData of sentiment.data.slice(0,3); let i=index">
+                <div class="col" [ngClass]="{'border-end border-3': i!=2}" *ngFor="let monthData of sentiment.data.reverse().slice(0,3); let i=index">
                     <div class="row">
                         <div class="col">{{getMonthDetails(monthData.month)}} {{monthData.year}}</div>
                         <i class="col fa fa-arrow-circle-up fa-4x" aria-hidden="true" *ngIf="monthData.change>0"></i>

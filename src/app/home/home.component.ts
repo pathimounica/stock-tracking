@@ -65,6 +65,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   public removeStock(stockSymbol:string) {
     const matchedIndex = this.stockList.findIndex((stock: stockListData) => stock.symbol === stockSymbol);
     this.stockList.splice(matchedIndex,1);
+    localStorage.setItem('stockList', JSON.stringify(this.stockList));
   }
 
   ngOnDestroy(): void {

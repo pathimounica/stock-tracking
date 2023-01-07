@@ -20,7 +20,7 @@ export class StockSummaryComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.stockSymbol){
-      const fromDate = new Date(new Date().setMonth(new Date().getMonth()-4)).toISOString().slice(0, 10);
+      const fromDate = new Date(new Date().setMonth(new Date().getMonth()-5)).toISOString().slice(0, 10);
       const toDate = new Date().toISOString().slice(0, 10);
       this.stockDetails$ = this.dataService.getSentiment(this.stockSymbol, fromDate, toDate);
     }
