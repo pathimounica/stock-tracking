@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { DataService } from '../services/data.service';
-import { SentimentData, SentimentInfo } from '../models/stocks.models';
+import { SentimentInfo } from '../models/stocks.models';
 
 
 @Component({
@@ -26,7 +26,7 @@ export class StockSummaryComponent implements OnInit {
     }
   }
 
-  public getMonthDetails(month:number){
+  public getMonthDetails(month:number): string{
     return this.monthNames[month];
   }
 }

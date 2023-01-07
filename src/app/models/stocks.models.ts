@@ -56,13 +56,3 @@ export interface stockListData extends Stocks {
     symbol: string;
     type: string;
 };
-
-export interface SentimentData {
-    buy: string;
-    hold: string;
-    period: Date;
-    sell: string;
-    strongBuy: string;
-    strongSell: string;
-    symbol: string;
-}

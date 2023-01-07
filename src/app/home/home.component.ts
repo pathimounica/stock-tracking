@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { combineLatest, Observable, Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators'
-import { StockInfo, stockListData } from '../models/stocks.models';
+import { ResultData, StockInfo, stockListData, StockSymbols } from '../models/stocks.models';
 
 import { DataService } from '../services/data.service';
 
@@ -13,8 +13,8 @@ import { DataService } from '../services/data.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  public stockData$ = new Observable<any>;
-  public stockSearch$ = new Observable<any>;
+  public stockData$ = new Observable<StockInfo>;
+  public stockSearch$ = new Observable<StockSymbols>;
   public stockList: stockListData[] = [];
   public stocksLoading: boolean = false;
   public trackerForm = new FormGroup({
@@ -29,13 +29,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.stockList = this.getStocksList();
   }
 
-  public trackStock(){
+  public trackStock(): void{
     const stockId = this.trackerForm.controls.stockInput.value;
     if(stockId){
       this.stocksLoading = true;
       const stockQuote$ = this.dataService.getQuoteData(stockId);
       const stockSearch$ = this.dataService.searchCompanyStock(stockId).pipe(
-        map((res:any) => res.result.find((stock:any) => stock.symbol === stockId)
+        map((res:StockSymbols) => res.result.filter((stock:ResultData) => stock.symbol === stockId)?.[0] || []
       ));
       if(stockId) {
         this.stockData$ = combineLatest({
@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  public removeStock(stockSymbol:string) {
+  public removeStock(stockSymbol:string): void {
     const matchedIndex = this.stockList.findIndex((stock: stockListData) => stock.symbol === stockSymbol);
     this.stockList.splice(matchedIndex,1);
     localStorage.setItem('stockList', JSON.stringify(this.stockList));
@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this._subscription.unsubscribe(); 
   }
 
-  private getStocksList() {
+  private getStocksList():stockListData[] {
     const stocks: string|null = localStorage.getItem('stockList');
     return stocks?JSON.parse(stocks):[]; 
   }

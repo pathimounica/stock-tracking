@@ -3,10 +3,6 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { Quote, SentimentInfo, StockSymbols } from '../models/stocks.models';
 
-interface searchResponse {
-  count: number,
-  result: any[]
-}
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +22,7 @@ export class DataService {
     return this.http.get<Quote>(`${this.configUrl}/quote?symbol=${search}${this.token}`);
   }
 
-  getSentiment(symbol: string, from: string, to:string){
+  getSentiment(symbol: string, from: string, to:string): Observable<SentimentInfo>{
     return this.http.get<SentimentInfo>(
       `${this.configUrl}stock//insider-sentiment?symbol=${symbol}&from=${from}&to=2022-12-31${this.token}`
     );
