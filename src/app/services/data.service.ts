@@ -9,8 +9,8 @@ import { Quote, SentimentInfo, StockSymbols } from '../models/stocks.models';
 })
 export class DataService {
 
-  configUrl = "https://finnhub.io/api/v1/";
-  token = "&token=bu4f8kn48v6uehqi3cqg";
+  configUrl: string = "https://finnhub.io/api/v1/";
+  token: string = "&token=bu4f8kn48v6uehqi3cqg";
 
   constructor(private http: HttpClient) { }
 

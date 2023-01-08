@@ -13,11 +13,11 @@ import { DataService } from '../services/data.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  public stockData$ = new Observable<StockInfo>;
-  public stockSearch$ = new Observable<StockSymbols>;
+  public stockData$: Observable<StockInfo> = new Observable();
+  public stockSearch$: Observable<StockSymbols> = new Observable();
   public stockList: stockListData[] = [];
   public stocksLoading: boolean = false;
-  public trackerForm = new FormGroup({
+  public trackerForm: FormGroup = new FormGroup({
     stockInput: new FormControl(null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)])
   });
 
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public trackStock(): void{
-    const stockId = this.trackerForm.controls.stockInput.value;
+    const stockId = this.trackerForm.controls['stockInput'].value;
     if(stockId){
       this.stocksLoading = true;
       const stockQuote$ = this.dataService.getQuoteData(stockId);
