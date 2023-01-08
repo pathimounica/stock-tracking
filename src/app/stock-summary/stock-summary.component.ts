@@ -12,8 +12,8 @@ import { SentimentInfo } from '../models/stocks.models';
 })
 export class StockSummaryComponent implements OnInit {
   
-  private monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
-  public stockSymbol = this.route.snapshot.paramMap.get('id');
+  private monthNames: string[] = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+  public stockSymbol:string = this.route.snapshot.paramMap.get('id') || '';
   public stockDetails$:Observable<SentimentInfo> = of()
 
   constructor(private route:ActivatedRoute, private dataService: DataService) { }
